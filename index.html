@@ -1,0 +1,221 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ARTHOUSE | Договор аренды</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#e9e9e9;font-family:Arial,sans-serif;color:#222}
+.page{max-width:900px;margin:25px auto;background:white;padding:35px 45px;box-shadow:0 2px 15px #0002}
+h1{text-align:center;font-size:23px;margin:5px}
+h2{text-align:center;font-size:15px;margin:5px 0 20px}
+h3{font-size:13px;border-bottom:1px solid #aaa;padding-bottom:5px;margin:17px 0 8px}
+p{font-size:12px;line-height:1.45;margin:5px 0}
+input,textarea{font:inherit;border:0;border-bottom:1px solid #888;padding:4px;background:#fafafa;min-width:0}
+input:focus,textarea:focus{outline:1px solid #999}
+.field{display:flex;align-items:center;gap:5px;margin:6px 0;font-size:12px}
+.field input{flex:1;width:100%}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:5px 20px}
+.signatures{display:grid;grid-template-columns:1fr 1fr;gap:25px;margin-top:12px}
+.signature-box{border:1px solid #aaa;border-radius:4px;padding:8px}
+canvas{width:100%;height:90px;display:block;touch-action:none;background:white}
+.sign-title{font-size:12px;font-weight:bold}
+.actions{display:flex;gap:10px;justify-content:center;margin:20px auto;flex-wrap:wrap}
+button{padding:12px 20px;border:0;border-radius:5px;background:#222;color:white;cursor:pointer;font-size:13px}
+button.secondary{background:#666}
+button.danger{background:#a33}
+small{font-size:10px;color:#777}
+@media print{
+ @page{size:A4;margin:9mm}
+ body{background:white}
+ .page{margin:0;padding:0;max-width:none;box-shadow:none}
+ .actions,.no-print{display:none!important}
+ input,textarea{background:white!important;color:black}
+ input{border-bottom:1px solid #777}
+ canvas{border:0}
+ h3{break-after:avoid}
+}
+@media(max-width:600px){
+ .page{margin:0;padding:18px}
+ .grid,.signatures{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+<h1>ARTHOUSE</h1>
+<h2>ДОГОВОР КРАТКОСРОЧНОЙ АРЕНДЫ № <input data-save="number" placeholder="001" style="width:65px"></h2>
+
+<div class="grid">
+<div class="field">Город: <input value="Астана" data-save="city"></div>
+<div class="field">Дата: <input type="date" data-save="date"></div>
+</div>
+
+<h3>1. СТОРОНЫ ДОГОВОРА</h3>
+<div class="grid">
+<div class="field">Арендодатель: <input data-save="owner"></div>
+<div class="field">ИИН: <input data-save="ownerIin"></div>
+<div class="field">Арендатор: <input data-save="client"></div>
+<div class="field">ИИН: <input data-save="clientIin"></div>
+<div class="field">Телефон арендодателя: <input data-save="ownerPhone"></div>
+<div class="field">Телефон арендатора: <input data-save="clientPhone"></div>
+</div>
+
+<h3>2. ПРЕДМЕТ ДОГОВОРА</h3>
+<p>Арендодатель передаёт Арендатору во временное пользование объект ARTHOUSE, расположенный по адресу:</p>
+<div class="field">Адрес: <input data-save="address"></div>
+<p>В состав объекта входят: жилой дом площадью 160 м², баня площадью 100 м², бассейн, сауна и зона отдыха.</p>
+
+<h3>3. СРОК АРЕНДЫ</h3>
+<div class="grid">
+<div class="field">Дата заезда: <input type="date" data-save="start"></div>
+<div class="field">Дата выезда: <input type="date" data-save="end"></div>
+<div class="field">Время заезда: <input type="time" value="15:00" data-save="checkin"></div>
+<div class="field">Время выезда: <input type="time" value="12:00" data-save="checkout"></div>
+</div>
+
+<h3>4. СТОИМОСТЬ И ОПЛАТА</h3>
+<div class="grid">
+<div class="field">Цена за сутки (₸): <input type="number" data-save="daily"></div>
+<div class="field">Количество суток: <input type="number" data-save="days"></div>
+<div class="field">Общая стоимость (₸): <input type="number" data-save="total"></div>
+<div class="field">Залог (₸): <input type="number" data-save="deposit"></div>
+</div>
+
+<h3>5. ОБЯЗАННОСТИ СТОРОН</h3>
+<p>5.1. Арендодатель обязуется передать объект в пригодном для использования состоянии.</p>
+<p>5.2. Арендатор обязуется бережно относиться к имуществу, соблюдать правила пожарной безопасности и освободить объект в установленное время.</p>
+<p>5.3. Арендатор несёт ответственность за причинённый по его вине ущерб.</p>
+<p>5.4. Залог возвращается после проверки объекта с учётом документально подтверждённого ущерба.</p>
+<p>5.5. Продление аренды допускается по согласованию сторон.</p>
+
+<h3>6. ЗАКЛЮЧИТЕЛЬНЫЕ УСЛОВИЯ</h3>
+<p>6.1. Стороны подтверждают согласие с условиями настоящего договора.</p>
+<p>6.2. Договор вступает в силу после подписания обеими сторонами.</p>
+<p>6.3. Споры разрешаются в соответствии с законодательством Республики Казахстан.</p>
+
+<h3>7. ПОДПИСИ СТОРОН</h3>
+<div class="signatures">
+<div class="signature-box">
+<div class="sign-title">АРЕНДОДАТЕЛЬ</div>
+<p>ФИО: <span id="ownerName"></span></p>
+<canvas id="sig1"></canvas>
+<small>Подпись арендодателя</small>
+<button class="secondary no-print" onclick="clearSig('sig1')">Очистить</button>
+</div>
+<div class="signature-box">
+<div class="sign-title">АРЕНДАТОР</div>
+<p>ФИО: <span id="clientName"></span></p>
+<canvas id="sig2"></canvas>
+<small>Подпись арендатора</small>
+<button class="secondary no-print" onclick="clearSig('sig2')">Очистить</button>
+</div>
+</div>
+
+<p style="margin-top:15px;text-align:center">Подписывая договор, стороны подтверждают согласие с его условиями.</p>
+</div>
+
+<div class="actions">
+<button onclick="save()">Сохранить данные</button>
+<button onclick="window.print()">Подписать и сохранить PDF</button>
+<button class="danger" onclick="resetAll()">Очистить договор</button>
+</div>
+
+<script>
+const fields = document.querySelectorAll('[data-save]');
+
+function save(){
+ const data={};
+ fields.forEach(el=>data[el.dataset.save]=el.value);
+ data.sig1=document.getElementById('sig1').toDataURL();
+ data.sig2=document.getElementById('sig2').toDataURL();
+ localStorage.setItem('arthouse_contract',JSON.stringify(data));
+ alert('Данные договора сохранены');
+}
+
+function load(){
+ const data=JSON.parse(localStorage.getItem('arthouse_contract')||'{}');
+ fields.forEach(el=>{
+  if(data[el.dataset.save]!==undefined)
+   el.value=data[el.dataset.save];
+ });
+ ['sig1','sig2'].forEach(id=>{
+  if(data[id]) restoreSignature(id,data[id]);
+ });
+ updateNames();
+}
+
+function restoreSignature(id,src){
+ const img=new Image();
+ img.onload=()=>{
+  const c=document.getElementById(id);
+  const ctx=c.getContext('2d');
+  ctx.drawImage(img,0,0,c.width,c.height);
+ };
+ img.src=src;
+}
+
+function updateNames(){
+ document.getElementById('ownerName').textContent=
+ document.querySelector('[data-save="owner"]').value;
+ document.getElementById('clientName').textContent=
+ document.querySelector('[data-save="client"]').value;
+}
+
+fields.forEach(el=>el.addEventListener('input',updateNames));
+
+function setupCanvas(id){
+ const c=document.getElementById(id);
+ const ctx=c.getContext('2d');
+ let drawing=false;
+ function resize(){
+  const old=c.toDataURL();
+  c.width=c.clientWidth*2;
+  c.height=180;
+  ctx.scale(2,2);
+  if(old!=='data:,') restoreSignature(id,old);
+  ctx.strokeStyle='#111';
+  ctx.lineWidth=2;
+  ctx.lineCap='round';
+ }
+ resize();
+ window.addEventListener('resize',resize);
+
+ function pos(e){
+  const r=c.getBoundingClientRect();
+  return {x:e.clientX-r.left,y:e.clientY-r.top};
+ }
+ c.addEventListener('pointerdown',e=>{
+  drawing=true;c.setPointerCapture(e.pointerId);
+  const p=pos(e);ctx.beginPath();ctx.moveTo(p.x,p.y);
+ });
+ c.addEventListener('pointermove',e=>{
+  if(!drawing)return;
+  const p=pos(e);ctx.lineTo(p.x,p.y);ctx.stroke();
+ });
+ c.addEventListener('pointerup',()=>{drawing=false;});
+ c.addEventListener('pointercancel',()=>{drawing=false;});
+}
+
+function clearSig(id){
+ const c=document.getElementById(id);
+ c.getContext('2d').clearRect(0,0,c.width,c.height);
+}
+
+function resetAll(){
+ if(!confirm('Удалить все данные договора?'))return;
+ localStorage.removeItem('arthouse_contract');
+ location.reload();
+}
+
+setupCanvas('sig1');
+setupCanvas('sig2');
+load();
+
+window.addEventListener('beforeprint',save);
+</script>
+</body>
+</html>
